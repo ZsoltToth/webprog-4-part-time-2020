@@ -20,6 +20,33 @@ const generate_lottery = (count = 1) => {
     return result;
 }
 
+const _matches = (lottery0, lottery1) => {
+    return lottery0.map(
+        (lottery0_pick) => {
+            return lottery1.includes(lottery0_pick) ? 1 : 0;
+        })
+        .reduce(
+            (acc, curr) => {return acc  +curr},
+            0);
+}
+
+const _calculate_prize = (pulled_numbers, picked_numbers, callback = _defult_prize_look_up) => {
+    return callback( _matches(pulled_numbers, picked_numbers) );
+}
+
+const _defult_prize_look_up = (match_cnt) => {
+    return {
+        0 : 0,
+        1 : 0,
+        2 : 10,
+        3 : 40,
+        4 : 200,
+        5 : 10000
+    }[match_cnt]
+}
+
 module.exports = {
-    generate_lottery : generate_lottery
+    generate_lottery : generate_lottery,
+    count_matches : _matches,
+    get_prize : _calculate_prize
 }
