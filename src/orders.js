@@ -1,3 +1,4 @@
+import * as countries from "i18n-iso-countries";
 /*
 order = {
  customer : {
@@ -26,9 +27,11 @@ Validation Rules:
 
  */
 
-const _order = (order) => {
-    if(!_validate_order(order)) return "Problem";
+const _order = (order, success, reject) => {
+    const problems =   _validate_order(order);
+    if(problems.length !== 0) return reject(problems);
     _submit_order(order);
+    success();
 }
 
 const _submit_order = (order) =>{
@@ -36,11 +39,26 @@ const _submit_order = (order) =>{
 }
 
 const _validate_order = ({customer, products}) => {
+    let result = [];
+    if(_validate_customer_information(customer).length !== 0) result = [...result,..._validate_customer_information(customer)];
+    return result;
 
 }
 
-const _validate_customer_information = ({name, age, naitionality, contact}) => {
+const _validate_customer_information = ({name, age, nationality, contact}) => {
+    let result = [];
+    if(!_validate_name(name)) result = [...result,"name"];
+    if(!_validate_age(age)) result = [...result,"age"];
+    if(!countries.isValid(nationality)) result = [...result,"nationality"];
+    return result;
+}
 
+const _validate_name = (name) => {
+    return name.match(/^([A-Z][a-z]+\s?){1,4}([A-Z][a-z]+)$/) != null;
+}
+
+const _validate_age = (age) =>{
+    return age >= 18;
 }
 
 module.exports = {

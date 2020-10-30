@@ -54,7 +54,6 @@ const _match_at_week = async (lottery_ticket, week) => {
     return _matches(lottery_ticket, await _pulled_number_of_week(week));
 }
 
-
 module.exports = {
     generate_lottery : generate_lottery,
     count_matches : _matches,

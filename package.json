@@ -5,17 +5,32 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:coverage": "npm run test -- --coverage"
+    "test:coverage": "npm run test -- --coverage",
+    "webpack": "webpack",
+    "webpack:dev": "npm run webpack -- --mode=development",
+    "webpack:dev:watch": "npm run webpack:dev -- --watch",
+    "css" : "node-sass src/css/style.scss dist/css/style.css",
+    "css:prod" : "npm run css -- --output-style=compressed",
+    "prebuild:prod" : "npm run test",
+    "build" : "npm run webpack:dev && npm run css",
+    "build:prod": "npm run webpack && npm run css:prod",
+    "clean" : "rimraf dist/js dist/css"
   },
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.21.0",
+    "i18n-iso-countries": "^6.2.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
     "@babel/runtime": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.1",
+    "bootstrap": "^4.5.3",
     "faker": "^5.1.0",
     "jest": "^26.6.1",
+    "node-sass": "^4.14.1",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.3.2",
+    "webpack-cli": "^4.1.0",
     "winston": "^3.3.3"
   },
   "repository": {

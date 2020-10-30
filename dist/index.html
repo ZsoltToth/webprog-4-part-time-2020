@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <script src="js/lottery.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+<body>
+<div class="container">
+<button
+        onclick="(()=>{alert(Lottery.generate_lottery()[0])})()"
+        class="btn btn-success"
+>Generate Lottery Numbers</button>
+<br/>
+<button onclick="(()=>{
+    Lottery._pulled_number_of_week(42)
+    .then((resp)=> {alert(resp)})
+    .catch((resp) => {alert(resp)})
+})()"
+        class="btn btn-danger"
+>Query Pulled Numbers</button>
+</div>
+</body>
+</html>
