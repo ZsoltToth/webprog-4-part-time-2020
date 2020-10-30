@@ -1,4 +1,5 @@
 const faker = require('faker');
+const axios = require('axios');
 
 const _generate_lottery = () => {
     let result = [];
@@ -45,8 +46,19 @@ const _defult_prize_look_up = (match_cnt) => {
     }[match_cnt]
 }
 
+const _pulled_number_of_week = async (week) => {
+    return await axios.get(`lottery/${week}`);
+}
+
+const _match_at_week = async (lottery_ticket, week) => {
+    return _matches(lottery_ticket, await _pulled_number_of_week(week));
+}
+
+
 module.exports = {
     generate_lottery : generate_lottery,
     count_matches : _matches,
-    get_prize : _calculate_prize
+    get_prize : _calculate_prize,
+    _pulled_number_of_week  : _pulled_number_of_week,
+    match_at_week : _match_at_week
 }

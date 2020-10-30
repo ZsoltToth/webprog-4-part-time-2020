@@ -36,3 +36,18 @@ console.log(
     lotteries.map(
         (lottery_ticket) => {return lottery.get_prize(pulled_numbers,lottery_ticket)})
 );
+
+const promise = new Promise((resolve, reject)=>{
+    setTimeout(()=> {resolve()}, 10000);
+})
+
+promise.then(()=>{console.log("I have waited too long!")});
+
+const sleep = (ms) => {
+    return new Promise((resolve)=>{
+        setTimeout(resolve, ms);
+    })
+}
+
+let sleep_promise = sleep(5000);
+sleep_promise.then(console.log("I have waited 5 sec"));
