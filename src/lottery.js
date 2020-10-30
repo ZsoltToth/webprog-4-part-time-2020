@@ -1,6 +1,6 @@
 const faker = require('faker');
 
-function _generate_lottery(){
+const _generate_lottery = () => {
     let result = [];
     for(let i = 0; i < 5; i++){
         let generated_lottery_number;
@@ -12,7 +12,7 @@ function _generate_lottery(){
     return result;
 }
 
-function generate_lottery(count = 1){
+const generate_lottery = (count = 1) => {
     let result = [];
     for(let i = 0; i < count; i++){
         result.push(_generate_lottery());

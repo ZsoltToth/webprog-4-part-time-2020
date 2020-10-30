@@ -7,3 +7,8 @@ console.log({
     pulled: pulled_numbers,
     lotteries : lotteries
     });
+
+
+for(let i = 0; i < lotteries.length; i++){
+    //Rest of wrong implementation
+}
